@@ -1,0 +1,2 @@
+class FibPrime < ApplicationRecord
+end
