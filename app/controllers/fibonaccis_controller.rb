@@ -21,17 +21,9 @@ class FibonaccisController < ApplicationController
     filteredList = []
     if fib
       @fibonacci.list = fib.list
-      # if params[:filtered] == true
-      #   @fibonacci.list = FibPrime.all[0].list[0..(params[:input]-1)]
-      #   # @fibonacci.list = primeFilter(@fibonacci.list)
-      # end
       render json: @fibonacci, status: :created, location: @fibonacci
     else
-      @fibonacci.list = fibby(@fibonacci.input)
-      # if params[:filtered] == true
-      #   @fibonacci.list = FibPrime.all[0].list[0..(params[:input]-1)]
-      #   # @fibonacci.list = primeFilter(@fibonacci.list)
-      # end
+      @fibonacci.list = calculateFib(@fibonacci.input)
       @fibonacci.save
       if @fibonacci.save
         render json: @fibonacci, status: :created, location: @fibonacci
@@ -41,59 +33,19 @@ class FibonaccisController < ApplicationController
     end
   end
 
-  def primeFilter(list)
-    # arr = []
-    # list.map { |e|
-    #   if prime?(e)
-    #     arr << e
-    #   end
-    # }
-    # return arr
-    arr = []
-    num = @fibonacci.input
-    i = 0
-    mult = num * 3
-    f = fibby(mult)
-    # arr = eratosthenes(num*5)
-    arr = []
-    while arr.length < num
-      fib = fibonacci(i)
-      f.each do |a|
-        if prime?(a)
-          arr << a
-        end
-      end
-    end
-    if arr.length > num
-      return arr[0...num]
-    else
-      return arr
-    end
-  end
-
-  def eratosthenes(n)
-    nums = [nil, nil, *2..n]
-    (2..Math.sqrt(n)).each do |i|
-      (i**2..n).step(i){|m| nums[m] = nil}  if nums[i]
-    end
-    nums.compact
-  end
-
-  def fibby(n)
+  def calculateFib(n)
       a = 0
       b = 1
       arr = []
       # Compute Fibonacci number in the desired position.
       n.times do
-          temp = a
-          a = b
-          # Add up previous two numbers in sequence.
-          b = temp + b
-          arr << a
+        temp = a
+        a = b
+        # Add up previous two numbers in sequence.
+        b = temp + b
+        arr << a
       end
       return arr
-
-      # return a
   end
 
   def prime?(n)
