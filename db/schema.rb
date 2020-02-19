@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 2020_02_16_171730) do
 
   create_table "fibonaccis", force: :cascade do |t|
     t.integer "input"
-    t.string "list"
+    t.text "list", default: [], array: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
