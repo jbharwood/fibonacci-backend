@@ -1,24 +1,18 @@
-# README
+## Corcoran Challenge
+Joseph Harwood
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Description
+- This is the frontend for an app has a text input that takes a number that
+  represents the number of iterations of the Fibonacci sequence and there is a
+  filter that shows only prime numbers of the Fibonacci sequence.
 
-Things you may want to cover:
+## Live Link
+- https://fibonacci-backend.herokuapp.com/
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Installation Instructions
+- Clone down this repo
+- Run "bundle install"
+- Run "rails db:create"
+- Run "rails db:migrate"
+- Run "rails db:seed"
+- Run "rails s"
