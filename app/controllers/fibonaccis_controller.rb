@@ -18,7 +18,6 @@ class FibonaccisController < ApplicationController
     @fibonacci = Fibonacci.new(fibonacci_params)
     @fibonacci.input = params[:input]
     fib = Fibonacci.find_by(input: @fibonacci.input)
-    filteredList = []
     if fib
       @fibonacci.list = fib.list
       render json: @fibonacci, status: :created, location: @fibonacci
@@ -47,53 +46,6 @@ class FibonaccisController < ApplicationController
       end
       return arr
   end
-
-  def prime?(n)
-    if n == 1
-      return true
-    end
-    if n >=2
-      (2..n - 1).all? do |x|
-        n % x != 0
-      end
-    else
-      false
-    end
-  end
-
-  def fibonacciSequence()
-    arr = []
-    num = @fibonacci.input
-    while num > 0
-      fib = fibonacci(num)
-      arr << fib
-      num -= 1
-    end
-    return arr.reverse
-  end
-
-  def fibonacci(n)
-    return n if n <= 1
-    fibonacci(n - 1) + fibonacci(n - 2)
-  end
-
-  # @fibonacci = Fibonacci.new(fibonacci_params)
-  # @fibonacci.input = params[:input][:input]
-  # arr = []
-  # # fib = fibonacci(params[:input][:input])
-  # num = params[:input][:input]
-  # while num > 0
-  #   fib = fibonacci(num)
-  #   arr << fib
-  #   num -= 1
-  # end
-  # @fibonacci.list = arr.reverse
-  #
-  # if @fibonacci.save
-  #   render json: @fibonacci, status: :created, location: @fibonacci
-  # else
-  #   render json: @fibonacci.errors, status: :unprocessable_entity
-  # end
 
   # PATCH/PUT /fibonaccis/1
   def update
