@@ -2,7 +2,7 @@ class CreateFibonaccis < ActiveRecord::Migration[6.0]
   def change
     create_table :fibonaccis do |t|
       t.integer :input
-      t.text :list, array: true, default: []
+      t.string :list
 
       t.timestamps
     end
